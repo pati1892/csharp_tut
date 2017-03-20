@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 17</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Interface ISerializable</h2>
+
+<b>A03.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.IO;
+<font color="blue">using</font> System.Runtime.Serialization;
+<font color="blue">using</font> System.Runtime.Serialization.Formatters.Binary;
+
+
+[Serializable]
+<font color="green">// objects of this class should be serialized such that only the</font>
+<font color="green">// day, month and year of a date are written but not the time.</font>
+<font color="blue">class</font> Node: ISerializable {
+  <font color="blue">public</font> DateTime date;
+  <font color="blue">public</font> Node next;
+  
+  <font color="blue">public</font> Node(DateTime d) { date = d; }
+  
+  <font color="green">// this constructor is automatically called during deserialization</font>
+  <font color="blue">public</font> Node(SerializationInfo info, StreamingContext context) {
+    <font color="green">// read year, month and day and convert it to the DateTime field</font>
+    <font color="blue">int</font> year  = (<font color="blue">int</font>)info.GetValue("year", <font color="blue">typeof</font>(<font color="blue">int</font>));
+    <font color="blue">int</font> month = (<font color="blue">int</font>)info.GetValue("month", <font color="blue">typeof</font>(<font color="blue">int</font>));
+    <font color="blue">int</font> day   = (<font color="blue">int</font>)info.GetValue("day", <font color="blue">typeof</font>(<font color="blue">int</font>));
+    date = <font color="blue">new</font> DateTime(year, month, day);
+    <font color="green">// read the next field</font>
+    next = (Node)info.GetValue("next", <font color="blue">typeof</font>(Node));
+  }
+  
+  <font color="green">// this method is automatically called during serialization</font>
+  <font color="blue">public</font> <font color="blue">void</font> GetObjectData(SerializationInfo info, StreamingContext context) {
+    info.AddValue("year", date.Year);
+    info.AddValue("month", date.Month);
+    info.AddValue("day", date.Day);
+    info.AddValue("next", next);
+  }
+}
+
+
+[Serializable]
+<font color="blue">class</font> List {
+  Node head = <font color="blue">null</font>;
+  
+  <font color="blue">public</font> <font color="blue">void</font> Add(DateTime date) {
+    Node p = <font color="blue">new</font> Node(date);
+    p.next = head; head = p;
+  }
+  
+  <font color="blue">public</font> <font color="blue">bool</font> Contains(<font color="blue">int</font> date) {
+    Node p = head;
+    <font color="blue">while</font> (p != <font color="blue">null</font> && date.CompareTo(p.date) != 0) p = p.next;
+    <font color="blue">return</font> p != <font color="blue">null</font>;
+  }
+  
+  <font color="blue">public</font> <font color="blue">void</font> Print() {
+    Node p = head;
+    <font color="blue">while</font> (p != <font color="blue">null</font>) {
+      Console.WriteLine(p.date);
+      p = p.next;
+    }
+  }
+}
+
+
+<font color="blue">public</font> <font color="blue">class</font> Test {
+
+  <font color="blue">static</font> <font color="blue">void</font> Main() {
+    <font color="green">//----- build the list</font>
+    List list = <font color="blue">new</font> List();
+    list.Add(<font color="blue">new</font> DateTime(2003, 4, 25, 10, 30, 0));
+    list.Add(<font color="blue">new</font> DateTime(2003, 3, 5, 12, 24, 30));
+    list.Add(<font color="blue">new</font> DateTime(2003, 1, 20, 11, 11, 11));
+    list.Print();
+
+    <font color="green">//----- serialize the list</font>
+    FileStream s = <font color="blue">new</font> FileStream("myfile", FileMode.Create);
+    IFormatter f = <font color="blue">new</font> BinaryFormatter();
+    f.Serialize(s, list);
+    s.Close();
+
+    <font color="green">//----- deserialize the list</font>
+    s = <font color="blue">new</font> FileStream("myfile", FileMode.Open);
+    List newList = f.Deserialize(s) <font color="blue">as</font> List;
+    s.Close();
+    <font color="blue">if</font> (newList != <font color="blue">null</font>) newList.Print();
+  }
+}</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

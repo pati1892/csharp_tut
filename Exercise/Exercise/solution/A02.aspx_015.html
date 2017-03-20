@@ -1,0 +1,401 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 24</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Web-Service einer Buchhandlung</h2>
+
+<p>
+	Der Web-Service selbst wird in einer Datei mit der Endung .asmx
+	implementiert und sieht so aus:
+</p>
+
+<b>BookStoreService.asmx</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color=blue><b><font color="blue">&lt;%</font>@ WebService Language=&quot;C#&quot; Class=&quot;BookStoreService&quot;<font color="blue">%&gt;</font></b></font>
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.Web.Services;
+<font color="blue">using</font> System.Web.Services.Protocols;
+<font color="blue">using</font> System.Collections;
+
+<font color="blue">public</font> <font color="blue">class</font> Book {
+  <font color="blue">public</font> <font color="blue">string</font> author;
+  <font color="blue">public</font> <font color="blue">string</font> title;
+  <font color="blue">public</font> <font color="blue">int</font> price;
+  <font color="blue">public</font> Book(<font color="blue">string</font> a, <font color="blue">string</font> t, <font color="blue">int</font> p) {
+    author = a; title = t; price = p;
+  }
+}
+
+<font color="blue">public</font> <font color="blue">class</font> BookStoreService: WebService {
+  Hashtable books = <font color="blue">new</font> Hashtable();
+
+  <font color="blue">public</font> BookStoreService() {
+    books["0201485419"] = <font color="blue">new</font> Book("D.Knuth", "The Art of Computer Programming", 45);
+    books["0201066726"] = <font color="blue">new</font> Book("R.Sedgewick", "Algorithms", 32);
+    books["0201634465"] = <font color="blue">new</font> Book("D.Box", "Essential COM", 34);
+  }
+  
+  [WebMethod]
+  <font color="blue">public</font> <font color="blue">bool</font> Available(<font color="blue">string</font> isbn) {
+    <font color="blue">return</font> books[isbn] != <font color="blue">null</font>;
+  }
+
+  [WebMethod]
+  <font color="blue">public</font> <font color="blue">string</font> Author(<font color="blue">string</font> isbn) {
+    <font color="blue">object</font> obj = books[isbn];
+    <font color="blue">if</font> (obj == <font color="blue">null</font>) <font color="blue">return</font> ""; <font color="blue">else</font> <font color="blue">return</font> ((Book)obj).author;
+  }
+  
+  [WebMethod]
+  <font color="blue">public</font> <font color="blue">string</font> Title(<font color="blue">string</font> isbn) {
+    <font color="blue">object</font> obj = books[isbn];
+    <font color="blue">if</font> (obj == <font color="blue">null</font>) <font color="blue">return</font> ""; <font color="blue">else</font> <font color="blue">return</font> ((Book)obj).title;
+  }
+  
+  [WebMethod]
+  <font color="blue">public</font> <font color="blue">int</font> Price(<font color="blue">string</font> isbn) {
+    <font color="blue">object</font> obj = books[isbn];
+    <font color="blue">if</font> (obj == <font color="blue">null</font>) <font color="blue">return</font> 0; <font color="blue">else</font> <font color="blue">return</font> ((Book)obj).price;
+  }
+  
+}</pre></font>
+</td></tr></table>
+
+<p>
+	Achtung: Die aspx-Datei muss in einem virtuellen Verzeichnis unseres
+	Web-Servers oder in einem Unterverzeichnis davon stehen.
+</p>
+
+<p>
+	Nun können wir unseren Web-Service bereits testen, indem wir den Browser
+	auf die Adresse<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="http://dotnet.jku.at/csbuch/solutions/24/BookStoreService.asmx">
+	http://dotnet.jku.at/csbuch/solutions/24/BookStoreService.asmx</a><br>
+	richten. Unter<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="http://dotnet.jku.at/csbuch/solutions/24/BookStoreService.asmx?WSDL">
+	http://dotnet.jku.at/csbuch/solutions/24/BookStoreService.asmx?WSDL
+	</a><br>
+	sehen wir die WSDL-Beschreibung unseres Web-Services.
+</p>
+
+<p>
+	Um den Web-Service von einem anderen Programm aus benutzen zu können,
+	muss man mit wsdl.exe eine Proxy-Klasse erzeugen:
+</p>
+
+<pre>  wsdl /out:BookStoreService.cs http://dotnet.jku.at/csbuch/solutions/24/BookStoreService.asmx?WSDL</pre>
+
+<p>
+	Diese Proxy-Klasse sieht im konkreten Fall so aus:
+</p>
+
+<b>BookStoreService.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color="green">//------------------------------------------------------------------------------</font>
+<font color="green">// <autogenerated></font>
+<font color="green">//     This code was generated by a tool.</font>
+<font color="green">//     Runtime Version: 1.0.3705.288</font>
+<font color="green">//</font>
+<font color="green">//     Changes to this file may cause incorrect behavior and will be lost if </font>
+<font color="green">//     the code is regenerated.</font>
+<font color="green">// </autogenerated></font>
+<font color="green">//------------------------------------------------------------------------------</font>
+
+<font color="green">// </font>
+<font color="green">// This source code was auto-generated by wsdl, Version=1.0.3705.288.</font>
+<font color="green">// </font>
+<font color="blue">using</font> System.Diagnostics;
+<font color="blue">using</font> System.Xml.Serialization;
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.Web.Services.Protocols;
+<font color="blue">using</font> System.ComponentModel;
+<font color="blue">using</font> System.Web.Services;
+
+
+<font color="green">/// <remarks/></font>
+[System.Diagnostics.DebuggerStepThroughAttribute()]
+[System.ComponentModel.DesignerCategoryAttribute("code")]
+[System.Web.Services.WebServiceBindingAttribute(Name="BookStoreServiceSoap", 
+  Namespace="http:<font color="green">//tempuri.org/")]</font>
+<font color="blue">public</font> <font color="blue">class</font> BookStoreService : System.Web.Services.Protocols.SoapHttpClientProtocol {
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> BookStoreService() {
+        <font color="blue">this</font>.Url = "http:<font color="green">//dotnet.jku.at/csbook/solutions/19/BookStoreService.asmx";</font>
+    }
+    
+    <font color="green">/// <remarks/></font>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http:<font color="green">//tempuri.org/Available", </font>
+      RequestNamespace="http:<font color="green">//tempuri.org/", ResponseNamespace="http://tempuri.org/", </font>
+      Use=System.Web.Services.Description.SoapBindingUse.Literal, 
+      ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    <font color="blue">public</font> <font color="blue">bool</font> Available(<font color="blue">string</font> isbn) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.Invoke("Available", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn});
+        <font color="blue">return</font> ((<font color="blue">bool</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> System.IAsyncResult BeginAvailable
+    (<font color="blue">string</font> isbn, System.AsyncCallback callback, <font color="blue">object</font> asyncState) {
+        <font color="blue">return</font> <font color="blue">this</font>.BeginInvoke("Available", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn}, callback, asyncState);
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> <font color="blue">bool</font> EndAvailable(System.IAsyncResult asyncResult) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.EndInvoke(asyncResult);
+        <font color="blue">return</font> ((<font color="blue">bool</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http:<font color="green">//tempuri.org/Author", </font>
+      RequestNamespace="http:<font color="green">//tempuri.org/", ResponseNamespace="http://tempuri.org/", </font>
+      Use=System.Web.Services.Description.SoapBindingUse.Literal, 
+      ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    <font color="blue">public</font> <font color="blue">string</font> Author(<font color="blue">string</font> isbn) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.Invoke("Author", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn});
+        <font color="blue">return</font> ((<font color="blue">string</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> System.IAsyncResult BeginAuthor
+    (<font color="blue">string</font> isbn, System.AsyncCallback callback, <font color="blue">object</font> asyncState) {
+        <font color="blue">return</font> <font color="blue">this</font>.BeginInvoke("Author", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn}, callback, asyncState);
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> <font color="blue">string</font> EndAuthor(System.IAsyncResult asyncResult) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.EndInvoke(asyncResult);
+        <font color="blue">return</font> ((<font color="blue">string</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http:<font color="green">//tempuri.org/Title", </font>
+      RequestNamespace="http:<font color="green">//tempuri.org/", ResponseNamespace="http://tempuri.org/", </font>
+      Use=System.Web.Services.Description.SoapBindingUse.Literal, 
+      ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    <font color="blue">public</font> <font color="blue">string</font> Title(<font color="blue">string</font> isbn) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.Invoke("Title", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn});
+        <font color="blue">return</font> ((<font color="blue">string</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> System.IAsyncResult BeginTitle
+    (<font color="blue">string</font> isbn, System.AsyncCallback callback, <font color="blue">object</font> asyncState) {
+        <font color="blue">return</font> <font color="blue">this</font>.BeginInvoke("Title", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn}, callback, asyncState);
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> <font color="blue">string</font> EndTitle(System.IAsyncResult asyncResult) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.EndInvoke(asyncResult);
+        <font color="blue">return</font> ((<font color="blue">string</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http:<font color="green">//tempuri.org/Price", </font>
+      RequestNamespace="http:<font color="green">//tempuri.org/", ResponseNamespace="http://tempuri.org/", </font>
+      Use=System.Web.Services.Description.SoapBindingUse.Literal, 
+      ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+    <font color="blue">public</font> <font color="blue">int</font> Price(<font color="blue">string</font> isbn) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.Invoke("Price", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn});
+        <font color="blue">return</font> ((<font color="blue">int</font>)(results[0]));
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> System.IAsyncResult BeginPrice
+    (<font color="blue">string</font> isbn, System.AsyncCallback callback, <font color="blue">object</font> asyncState) {
+        <font color="blue">return</font> <font color="blue">this</font>.BeginInvoke("Price", <font color="blue">new</font> <font color="blue">object</font>[] {
+                    isbn}, callback, asyncState);
+    }
+    
+    <font color="green">/// <remarks/></font>
+    <font color="blue">public</font> <font color="blue">int</font> EndPrice(System.IAsyncResult asyncResult) {
+        <font color="blue">object</font>[] results = <font color="blue">this</font>.EndInvoke(asyncResult);
+        <font color="blue">return</font> ((<font color="blue">int</font>)(results[0]));
+    }
+}</pre></font>
+</td></tr></table>
+
+<p>
+	Nun muß man noch ein Hauptprogramm schreiben, das den Web-Service über die
+	Proxy-Klasse aufruft. Das folgende Programm liest Kommandos z.B. der Art
+</p>
+
+<pre>  price 0201485419
+  title 0201485419
+  author 0201485419</pre>
+
+ <p>
+ 	und ruft die betreffenden Methoden des Web-Service auf:
+ </p>
+
+<b>BookStoreTest.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color="blue">using</font> System;
+
+<font color="blue">public</font> <font color="blue">class</font> BookStoreTest {
+
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main() {
+    BookStoreService store = <font color="blue">new</font> BookStoreService();
+    <font color="blue">for</font> (;;) {
+      Console.Write(">");
+      <font color="blue">string</font> cmd = Console.ReadLine();
+      <font color="blue">if</font> (cmd == "") <font color="blue">return</font>;
+      <font color="blue">string</font> isbn;
+      <font color="blue">if</font> (cmd.StartsWith("price")) {
+        isbn = cmd.Substring(6).Trim();
+        Console.WriteLine("price = {0}", store.Price(isbn));
+      } <font color="blue">else</font> <font color="blue">if</font> (cmd.StartsWith("author")) {
+        isbn = cmd.Substring(7).Trim();
+        Console.WriteLine("author = {0}", store.Author(isbn));
+      } <font color="blue">else</font> <font color="blue">if</font> (cmd.StartsWith("title")) {
+        isbn = cmd.Substring(6).Trim();
+        Console.WriteLine("title = {0}", store.Title(isbn));
+      } <font color="blue">else</font> <font color="blue">if</font> (cmd.StartsWith("avail")) {
+        isbn = cmd.Substring(6).Trim();
+        <font color="blue">if</font> (store.Available(isbn)) Console.WriteLine("available"); 
+        <font color="blue">else</font> Console.WriteLine("not available");
+      }
+    }
+  }
+}</pre></font>
+</td></tr></table>
+
+<p>
+	Zum Schluss übersetzen wir beide Programmteile wie folgt:
+</p>
+
+<pre>  csc BookStoreService.cs BookStoreTest.cs</pre>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

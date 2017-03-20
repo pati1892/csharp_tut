@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 14</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Generischer binärer Suchbaum</h2>
+
+<b>A04.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color="blue">using</font> System;
+
+<font color="green">//======================================================================</font>
+<font color="green">//  BinaryTree< K, V ></font>
+<font color="green">//======================================================================</font>
+<font color="blue">class</font> BinaryTree< K, V > where K: IComparable {
+  
+  <font color="blue">class</font> Node {
+    <font color="blue">public</font> K key;
+    <font color="blue">public</font> V val;
+    <font color="blue">public</font> Node left, right;
+    <font color="blue">public</font> Node(K key, V val) { <font color="blue">this</font>.key = key; <font color="blue">this</font>.val = val; }
+  }
+  
+  Node root;
+  Node foundNode;  <font color="green">// used in Contains to denote the found node</font>
+  
+  <font color="green">// inserts a key-value pair into the tree</font>
+  <font color="blue">public</font> <font color="blue">void</font> Insert(K key, V val) {
+    Node p = root, father = <font color="blue">null</font>;
+    <font color="blue">while</font> (p != <font color="blue">null</font>) {
+      father = p;
+      <font color="blue">int</font> d = key.CompareTo(p.key);
+      <font color="blue">if</font> (d == 0) <font color="blue">return</font>; <font color="green">// do not insert duplicates</font>
+      <font color="blue">else</font> <font color="blue">if</font> (d < 0) p = p.left; 
+      <font color="blue">else</font> p = p.right;
+    }
+    <font color="green">// father points to the leaf under which the new node must be inserted</font>
+    Node n = <font color="blue">new</font> Node(key, val);
+    <font color="blue">if</font> (root == <font color="blue">null</font>) root = n;
+    <font color="blue">else</font> <font color="blue">if</font> (key.CompareTo(father.key) < 0) father.left = n;
+    <font color="blue">else</font> father.right = n;
+  }
+  
+  <font color="green">// returns true if the specified key is in the tree (sets foundNode)</font>
+  <font color="blue">public</font> <font color="blue">bool</font> Contains(K key) {
+    Node p = root;
+    <font color="blue">while</font> (p != <font color="blue">null</font>) {
+      <font color="blue">int</font> d = key.CompareTo(p.key);
+      <font color="blue">if</font> (d == 0) { foundNode = p; <font color="blue">return</font> <font color="blue">true</font>; }
+      <font color="blue">else</font> <font color="blue">if</font> (d < 0) p = p.left;
+      <font color="blue">else</font> p = p.right;
+    }
+    foundNode = <font color="blue">null</font>;
+    <font color="blue">return</font> <font color="blue">false</font>;
+  }
+  
+  <font color="green">// returns the value for the given key or throws an exception if not found</font>
+  <font color="blue">public</font> V <font color="blue">this</font>[K key] {
+    get {
+      <font color="blue">if</font> (Contains(key))
+        <font color="blue">return</font> foundNode.val;
+      <font color="blue">else</font>
+        <font color="blue">throw</font> <font color="blue">new</font> Exception("-- no such value");
+    }
+  }
+}
+
+<font color="green">//---------------------------------------------------------------------</font>
+<font color="green">// Test program</font>
+<font color="green">//---------------------------------------------------------------------</font>
+<font color="blue">class</font> Test {
+  
+  <font color="blue">static</font> BinaryTree<<font color="blue">string</font>, <font color="blue">int</font>> phoneBook;
+
+  <font color="blue">static</font> <font color="blue">void</font> Find(<font color="blue">string</font> name) {
+    <font color="blue">if</font> (phoneBook.Contains(name))
+      Console.WriteLine(name + ": " + phoneBook[name]);
+    <font color="blue">else</font>
+      Console.WriteLine(name + ": not found");
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main() {
+    phoneBook = <font color="blue">new</font> BinaryTree<<font color="blue">string</font>, <font color="blue">int</font>>();
+    phoneBook.Insert("Jones", 1234);
+    phoneBook.Insert("Adams", 2345);
+    phoneBook.Insert("Miller", 3456);
+    phoneBook.Insert("Watson", 4567);
+    phoneBook.Insert("Smith", 5678);
+    
+    Find("Adams");
+    Find("Adam");
+    Find("Watson");
+  }
+}</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

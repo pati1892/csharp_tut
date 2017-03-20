@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 8</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Kreuzreferenzliste</h2>
+
+<b>A07.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+/* This program reads a C# file and generates a cross reference list <font color="blue">for</font> it.
+   The source code <font color="blue">is</font> printed with line numbers and the word list <font color="blue">is</font> sorted.
+   Keywords are excluded <font color="blue">as</font> well <font color="blue">as</font> words occurring <font color="blue">in</font> comments or strings.
+*/
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.IO;
+<font color="blue">using</font> System.Collections;
+<font color="blue">using</font> System.Text;
+
+<font color="blue">class</font> Xref {
+  <font color="blue">static</font> SortedList names = <font color="blue">new</font> SortedList(); <font color="green">// the names in the cross reference list</font>
+  <font color="blue">static</font> <font color="blue">string</font>[] keys = {
+    "<font color="blue">abstract</font>","<font color="blue">as</font>","<font color="blue">base</font>","<font color="blue">bool</font>","<font color="blue">break</font>","<font color="blue">byte</font>","<font color="blue">case</font>","<font color="blue">catch</font>","<font color="blue">char</font>","<font color="blue">checked</font>",
+    "<font color="blue">class</font>","<font color="blue">const</font>","<font color="blue">continue</font>","<font color="blue">decimal</font>","<font color="blue">default</font>","<font color="blue">delegate</font>","<font color="blue">do</font>","<font color="blue">double</font>","<font color="blue">else</font>",
+    "<font color="blue">enum</font>","<font color="blue">event</font>","<font color="blue">explicit</font>","<font color="blue">extern</font>","<font color="blue">false</font>","<font color="blue">finally</font>","<font color="blue">fixed</font>","<font color="blue">float</font>","<font color="blue">for</font>",
+    "<font color="blue">foreach</font>","<font color="blue">goto</font>","<font color="blue">if</font>","<font color="blue">implicit</font>","<font color="blue">in</font>","<font color="blue">int</font>","<font color="blue">interface</font>","<font color="blue">internal</font>","<font color="blue">is</font>","<font color="blue">lock</font>",
+    "<font color="blue">long</font>","<font color="blue">namespace</font>","<font color="blue">new</font>","<font color="blue">null</font>","<font color="blue">object</font>","<font color="blue">operator</font>","<font color="blue">out</font>","<font color="blue">override</font>","<font color="blue">params</font>",
+    "<font color="blue">private</font>","<font color="blue">protected</font>","<font color="blue">public</font>","<font color="blue">readonly</font>","<font color="blue">ref</font>","<font color="blue">return</font>","<font color="blue">sbyte</font>","<font color="blue">sealed</font>","<font color="blue">short</font>",
+    "<font color="blue">sizeof</font>","<font color="blue">stackalloc</font>","<font color="blue">static</font>","<font color="blue">string</font>","<font color="blue">struct</font>","<font color="blue">this</font>","<font color="blue">switch</font>","<font color="blue">throw</font>","<font color="blue">true</font>",
+    "<font color="blue">try</font>","<font color="blue">typeof</font>","<font color="blue">uint</font>","<font color="blue">ulong</font>","<font color="blue">unchecked</font>","<font color="blue">unsafe</font>","<font color="blue">ushort</font>","<font color="blue">using</font>","<font color="blue">virtual</font>",
+    "<font color="blue">void</font>","<font color="blue">while</font>"};
+    
+  <font color="blue">static</font> StreamReader r;    <font color="green">// source code reader</font>
+  <font color="blue">static</font> StreamWriter w;    <font color="green">// output of cross reference list</font>
+  <font color="blue">static</font> <font color="blue">int</font> lineNo = 1;    <font color="green">// current line number</font>
+  <font color="blue">static</font> <font color="blue">int</font> c;             <font color="green">// current input character</font>
+  
+  <font color="blue">const</font> <font color="blue">int</font> eof = -1;
+  
+  <font color="blue">static</font> <font color="blue">int</font> Read() {
+    c = r.Read();
+    <font color="blue">if</font> (c == '\n') lineNo++;
+    <font color="blue">return</font> c;
+  }
+  
+  <font color="green">// Print the source code with line numbers</font>
+  <font color="blue">static</font> <font color="blue">void</font> PrintSourceFile() {
+    <font color="blue">int</font> lnr = 1;
+    <font color="blue">string</font> line = r.ReadLine();
+    <font color="blue">while</font> (line != <font color="blue">null</font>) {
+      w.WriteLine("{0,4} {1}", lnr++, line);
+      line = r.ReadLine();
+    }
+    w.WriteLine();
+  }
+  
+  <font color="green">// Return true if the word is in the keyword table</font>
+  <font color="blue">static</font> <font color="blue">bool</font> IsKey(<font color="blue">string</font> word) {
+    <font color="blue">int</font> i = 0, j = keys.Length-1;
+    <font color="blue">while</font> (i <= j) {
+      <font color="blue">int</font> m = (i + j) / 2;
+      <font color="blue">if</font> (keys[m] == word) <font color="blue">return</font> <font color="blue">true</font>;
+      <font color="blue">if</font> (word.CompareTo(keys[m]) < 0) j = m - 1; <font color="blue">else</font> i = m + 1;
+    }
+    <font color="blue">return</font> <font color="blue">false</font>;
+  }
+  
+  <font color="green">// Read a word and add it to the cross reference list if it is not a keyword</font>
+  <font color="blue">static</font> <font color="blue">void</font> AddWord() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">while</font> (Char.IsLetterOrDigit((<font color="blue">char</font>)c) || c == '_') {
+      b.Append((<font color="blue">char</font>)c);
+      c = Read();
+    }
+    <font color="blue">string</font> word = b.ToString();
+    <font color="blue">if</font> (!IsKey(word)) { <font color="green">// no keyword => collect line number of this word</font>
+      ArrayList lineNumbers = (ArrayList)names[word];
+      <font color="blue">if</font> (lineNumbers == <font color="blue">null</font>) {lineNumbers = <font color="blue">new</font> ArrayList(); names[word] = lineNumbers;}
+      lineNumbers.Add(lineNo);
+    }
+  }
+  
+  <font color="blue">static</font> <font color="blue">void</font> SkipString(<font color="blue">char</font> end) {
+    <font color="blue">for</font> (;;) {
+      c = Read();
+      <font color="blue">if</font> (c == end) { c = Read(); <font color="blue">break</font>; }
+      <font color="blue">else</font> <font color="blue">if</font> (c == eof) <font color="blue">break</font>;
+      <font color="blue">else</font> <font color="blue">if</font> (c == '\\') c = Read();
+    }
+  }
+  
+  <font color="blue">static</font> <font color="blue">void</font> SkipComment() {
+    c = Read();
+    <font color="blue">if</font> (c == '/') {
+      <font color="blue">do</font> c = Read(); <font color="blue">while</font> (c != eof && c != '\n');
+    } <font color="blue">else</font> <font color="blue">if</font> (c == '*') {
+      c = Read();
+      <font color="blue">do</font> {
+       <font color="blue">while</font> (c != eof && c != '*') Read();
+       <font color="blue">if</font> (c != eof) c = Read();
+      } <font color="blue">while</font> (c != eof && c != '/');
+      <font color="blue">if</font> (c != eof) c = Read();
+    }
+  }
+  
+  <font color="green">// Read the source code and add all words to the cross reference list</font>
+  <font color="blue">static</font> <font color="blue">void</font> CollectWords() {
+    c = Read();
+    <font color="blue">while</font> (c != eof) {
+      <font color="blue">if</font> (Char.IsLetter((<font color="blue">char</font>)c) || c == '_') AddWord();
+      <font color="blue">else</font> <font color="blue">if</font> (c == '"' || c == '\'') SkipString((<font color="blue">char</font>)c);
+      <font color="blue">else</font> <font color="blue">if</font> (c == '/') SkipComment();
+      <font color="blue">else</font> c = Read();
+    }
+  }
+  
+  <font color="green">// Print the cross reference list</font>
+  <font color="blue">static</font> <font color="blue">void</font> PrintXrefList() {
+    <font color="blue">foreach</font> (<font color="blue">string</font> word <font color="blue">in</font> names.Keys) {
+      ArrayList lineNumbers = (ArrayList)names[word];
+      w.Write("{0, -10}", word);
+      <font color="blue">foreach</font> (<font color="blue">int</font> n <font color="blue">in</font> lineNumbers) w.Write(" " + n);
+      w.WriteLine();
+    }
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main(<font color="blue">string</font>[] arg) {
+    <font color="blue">if</font> (arg.Length == 1) {
+      <font color="blue">try</font> {
+        FileStream s1 = <font color="blue">new</font> FileStream(arg[0], FileMode.Open);
+        FileStream s2 = <font color="blue">new</font> FileStream(arg[0] + ".xref", FileMode.Create);
+        r = <font color="blue">new</font> StreamReader(s1);
+        w = <font color="blue">new</font> StreamWriter(s2);
+        PrintSourceFile();
+        s1.Seek(0, SeekOrigin.Begin);
+        CollectWords();
+        PrintXrefList();
+        r.Close(); w.Close();
+      } <font color="blue">catch</font> (Exception e) {
+        Console.WriteLine(e.ToString());
+      }
+    } <font color="blue">else</font> Console.WriteLine("-- file name expected");
+  }
+}</pre></font>
+</td></tr></table>
+
+<h3>Beispiel f&uuml;r das Ergebnis</h3>
+
+<b>A06.cs.xref</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+   1 using System;
+   2 
+   3 class Test {
+   4   
+   5   static void Clear(int[] arr, params int[] indexes) {
+   6     foreach (int i in indexes) arr[i] = 0;
+   7   }
+   8   
+   9   public static void Main() {
+  10     int[] a = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+  11     Clear(a, 3, 4, 8);
+  12     foreach (int val in a) Console.Write(val + &quot; &quot;);
+  13     Console.WriteLine();
+  14   }
+  15 }
+
+a          10 11 12
+arr        5 6
+Clear      5 11
+Console    12 13
+i          6 6
+indexes    5 6
+Main       9
+System     1
+Test       3
+val        12 12
+Write      12
+WriteLine  13</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

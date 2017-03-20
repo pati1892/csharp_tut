@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 7</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Formatierte Eingabe</h2>
+
+<p>
+	Die folgende L&ouml;sung kann mehr als die Aufgabenstellung fordert.
+	Sie bietet nicht nur Methoden <i>Read</i>, <i>ReadInt</i> und <i>ReadFloat</i>,
+	sondern auch Methoden zum Lesen von Wörtern, Strings, Zeilen usw.
+</p>
+<p>
+	Eine detaillierte Dokumentation dieser Klasse findet man
+	<a href="/In/In.html">hier.</a>
+</p>
+
+<b>/In/In.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+/*-------------------------------------------------------------------------
+In.cs -- Formatted Input <font color="blue">in</font> C#,
+Copyright (c) 2005 Hanspeter Moessenboeck, University of Linz
+
+This <font color="blue">class</font> <font color="blue">is</font> free software; you can redistribute it and/or modify it 
+under the terms of the GNU General Public License <font color="blue">as</font> published by the 
+Free Software Foundation; either version 2, or (at your option) any 
+later version.
+
+This <font color="blue">class</font> <font color="blue">is</font> distributed <font color="blue">in</font> the hope that it will be useful, but 
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License 
+<font color="blue">for</font> more details.
+-------------------------------------------------------------------------*/
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.IO;
+<font color="blue">using</font> System.Text;
+<font color="blue">using</font> System.Collections;
+<font color="blue">using</font> System.Globalization;
+
+<font color="blue">public</font> <font color="blue">class</font> In {
+  <font color="blue">public</font>  <font color="blue">const</font> <font color="blue">char</font> eof   = '\uffff';   <font color="green">// signals end of file</font>
+  <font color="blue">private</font> <font color="blue">const</font> <font color="blue">char</font> empty = '\ufffe';   <font color="green">// signals: no lookahead character available</font>
+  
+  <font color="blue">private</font> <font color="blue">static</font> <font color="blue">bool</font> done = <font color="blue">true</font>;       <font color="green">// success of most recent operation</font>
+  <font color="blue">private</font> <font color="blue">static</font> StreamReader r = <font color="blue">null</font>;  <font color="green">// input stream</font>
+  <font color="blue">private</font> <font color="blue">static</font> <font color="blue">char</font> ch = ' ';          <font color="green">// auxiliary for reading</font>
+  <font color="blue">private</font> <font color="blue">static</font> <font color="blue">char</font> buf = empty;       <font color="green">// the lookahead character</font>
+  <font color="blue">private</font> <font color="blue">static</font> NumberFormatInfo provider = <font color="blue">null</font>; <font color="green">// for conversions between string and float</font>
+  <font color="blue">private</font> <font color="blue">static</font> Stack readerStack = <font color="blue">new</font> Stack();  <font color="green">// for nested calls of Open()</font>
+  <font color="blue">private</font> <font color="blue">static</font> Stack bufStack = <font color="blue">new</font> Stack();     <font color="green">// for nested calls of Open()</font>
+  
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">bool</font> Done {
+    get {<font color="blue">return</font> done;}
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Open(<font color="blue">string</font> path) {
+    <font color="blue">try</font> {
+      Open(<font color="blue">new</font> FileStream(path, FileMode.Open));
+    } <font color="blue">catch</font> {
+      done = <font color="blue">false</font>;
+    }
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Open(Stream s) {
+    StreamReader rNew = <font color="blue">new</font> StreamReader(s);
+    readerStack.Push(r);
+    bufStack.Push(buf);
+    r = rNew;
+    buf = empty;
+    done = <font color="blue">true</font>;
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Close() {
+    <font color="blue">if</font> (r != <font color="blue">null</font>) r.Close();
+    <font color="blue">if</font> (readerStack.Count > 0) {
+      r = (StreamReader)readerStack.Pop();
+      buf = (<font color="blue">char</font>)bufStack.Pop();
+    } <font color="blue">else</font> {
+      r = <font color="blue">null</font>;
+      buf = empty;
+    }
+  }
+  
+  <font color="blue">private</font> <font color="blue">static</font> <font color="blue">char</font> CharAfterWhiteSpace() {
+    <font color="blue">char</font> ch;
+    <font color="blue">do</font> ch = Read(); <font color="blue">while</font> (ch <= ' ');
+    <font color="blue">return</font> ch;
+  }
+  
+  <font color="blue">private</font> <font color="blue">static</font> <font color="blue">string</font> ReadDigits() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = CharAfterWhiteSpace();
+    <font color="blue">if</font> (ch == '-') {
+      b.Append(ch);
+      ch = Read();
+    }
+    <font color="blue">while</font> (Char.IsDigit(ch)) {
+      b.Append(ch);
+      ch = Read();
+    }
+    buf = ch;
+    <font color="blue">return</font> b.ToString();
+  }
+  
+  <font color="blue">private</font> <font color="blue">static</font> <font color="blue">string</font> ReadFloatDigits() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = CharAfterWhiteSpace();
+    <font color="blue">if</font> (ch == '+' || ch == '-') {
+      b.Append(ch);
+      ch = Read();
+    }
+    <font color="blue">while</font> (Char.IsDigit(ch)) {
+      b.Append(ch);
+      ch = Read();
+    }
+    <font color="blue">if</font> (ch == '.') {
+      b.Append(ch);
+      ch = Read();
+      <font color="blue">while</font> (Char.IsDigit(ch)) {
+        b.Append(ch);
+        ch = Read();
+      }
+    }
+    <font color="blue">if</font> (ch == 'e' || ch == 'E') {
+      b.Append(ch);
+      ch = Read();
+      <font color="blue">if</font> (ch == '+' || ch == '-') {
+        b.Append(ch);
+        ch = Read();
+      }
+      <font color="blue">while</font> (Char.IsDigit(ch)) {
+        b.Append(ch);
+        ch = Read();
+      }
+    }
+    buf = ch;
+    <font color="blue">return</font> b.ToString();
+  }
+
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">char</font> Read() {
+    <font color="blue">if</font> (buf != empty) {
+      ch = buf;
+      <font color="blue">if</font> (buf != eof) buf = empty;
+    } <font color="blue">else</font> {
+      <font color="blue">int</font> x;
+      <font color="blue">if</font> (r == <font color="blue">null</font>) x = Console.Read(); <font color="blue">else</font> x = r.Read();
+      <font color="blue">if</font> (x < 0) {
+        ch = eof; buf = eof; done = <font color="blue">false</font>;
+      } <font color="blue">else</font> {
+        ch = (<font color="blue">char</font>)x;
+      }
+    }
+    <font color="blue">return</font> ch;
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">int</font> ReadInt() {
+    <font color="blue">string</font> s = ReadDigits();
+    <font color="blue">try</font> {
+      done = <font color="blue">true</font>;
+      <font color="blue">return</font> Convert.ToInt32(s);
+    } <font color="blue">catch</font> {
+      done = <font color="blue">false</font>;
+      <font color="blue">return</font> 0;
+    }
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">long</font> ReadLong() {
+    <font color="blue">string</font> s = ReadDigits();
+    <font color="blue">try</font> {
+      done = <font color="blue">true</font>;
+      <font color="blue">return</font> Convert.ToInt64(s);
+    } <font color="blue">catch</font> {
+      done = <font color="blue">false</font>;
+      <font color="blue">return</font> 0;
+    }
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">float</font> ReadFloat() {
+    <font color="blue">string</font> s = ReadFloatDigits();
+    <font color="blue">try</font> {
+      done = <font color="blue">true</font>;
+      <font color="blue">return</font> Convert.ToSingle(s, provider);
+    } <font color="blue">catch</font> {
+      done = <font color="blue">false</font>;
+      <font color="blue">return</font> 0f;
+    }
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">double</font> ReadDouble() {
+    <font color="blue">string</font> s = ReadFloatDigits();
+    <font color="blue">try</font> {
+      done = <font color="blue">true</font>;
+      <font color="blue">return</font> Convert.ToDouble(s, provider);
+    } <font color="blue">catch</font> {
+      done = <font color="blue">false</font>;
+      <font color="blue">return</font> 0.0;
+    }
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">bool</font> ReadBool() {
+    <font color="blue">string</font> s = ReadIdent();
+    done = <font color="blue">true</font>;
+    <font color="blue">if</font> (s == "<font color="blue">true</font>") <font color="blue">return</font> <font color="blue">true</font>;
+    <font color="blue">else</font> <font color="blue">if</font> (s == "<font color="blue">false</font>") <font color="blue">return</font> <font color="blue">false</font>;
+    <font color="blue">else</font> {done = <font color="blue">false</font>; <font color="blue">return</font> <font color="blue">false</font>;}
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">string</font> ReadIdent() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = CharAfterWhiteSpace();
+    <font color="blue">if</font> (Char.IsLetter(ch) || ch == '_') {
+      b.Append(ch);
+      ch = Read();
+      <font color="blue">while</font> (Char.IsLetterOrDigit(ch) || ch == '_') {
+        b.Append(ch);
+        ch = Read();
+      }
+    }
+    buf = ch;
+    done = b.Length > 0;
+    <font color="blue">return</font> b.ToString();
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">string</font> ReadString() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = CharAfterWhiteSpace();
+    <font color="blue">if</font> (ch == '"') {
+      ch = Read();
+      <font color="blue">while</font> (ch != eof && ch != '"') {
+        b.Append(ch);
+        ch = In.Read();
+      }
+      <font color="blue">if</font> (ch == '"') {done = <font color="blue">true</font>; ch = Read();} <font color="blue">else</font> done = <font color="blue">false</font>;
+    } <font color="blue">else</font> done = <font color="blue">false</font>;
+    buf = ch;
+    <font color="blue">return</font> b.ToString();
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">string</font> ReadWord() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = CharAfterWhiteSpace();
+    <font color="blue">while</font> (ch > ' ' && ch != eof) {
+      b.Append(ch);
+      ch = Read();
+    }
+    buf = ch;
+    done = b.Length > 0;
+    <font color="blue">return</font> b.ToString();
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">string</font> ReadLine() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = Read();
+    done = ch != eof;
+    <font color="blue">while</font> (ch != eof && ch != '\r') {
+      b.Append(ch);
+      ch = Read();
+    }
+    Read(); <font color="green">// skip '\n'</font>
+    buf = empty;
+    <font color="blue">return</font> b.ToString();
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">string</font> ReadFile() {
+    StringBuilder b = <font color="blue">new</font> StringBuilder();
+    <font color="blue">char</font> ch = Read();
+    <font color="blue">while</font> (done) {
+      b.Append(ch);
+      ch = Read();
+    }
+    buf = eof;
+    done = <font color="blue">true</font>;
+    <font color="blue">return</font> b.ToString();
+  }
+
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">char</font> Peek() {
+    <font color="blue">char</font> ch = CharAfterWhiteSpace();
+    buf = ch;
+    <font color="blue">return</font> ch;
+  }
+  
+  <font color="blue">static</font> In() {
+    provider = <font color="blue">new</font> CultureInfo("en-US").NumberFormat;
+  }
+  
+}</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

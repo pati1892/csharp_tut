@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 14</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Generische sortierte Liste</h2>
+
+<b>A03.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color="blue">using</font> System;
+
+<font color="green">//==========================================================</font>
+<font color="green">// SortedList< T ></font>
+<font color="green">//==========================================================</font>
+<font color="blue">class</font> SortedList< T > where T: IComparable {
+  
+  <font color="blue">class</font> Node {
+    <font color="blue">public</font> T val;
+    <font color="blue">public</font> Node next;
+    <font color="blue">public</font> Node(T x) { val = x; }
+  }
+  
+  Node head = <font color="blue">null</font>;
+  
+  <font color="green">// adds x to the list</font>
+  <font color="blue">public</font> <font color="blue">void</font> Add(T x) {
+    Node p = head, prev = <font color="blue">null</font>;
+    <font color="blue">while</font> (p != <font color="blue">null</font> && p.val.CompareTo(x) < 0) {
+      prev = p; p = p.next;
+    }
+    <font color="green">// p == null || p.val >= x</font>
+    Node n = <font color="blue">new</font> Node(x);
+    n.next = p;
+    <font color="blue">if</font> (prev == <font color="blue">null</font>) head = n; <font color="blue">else</font> prev.next = n;
+  }
+  
+  <font color="green">// removes x from the list</font>
+  <font color="blue">public</font> <font color="blue">void</font> Remove(T x) {
+    Node p = head, prev = <font color="blue">null</font>;
+    <font color="blue">while</font> (p != <font color="blue">null</font> && p.val.CompareTo(x) != 0) {
+      prev = p; p = p.next;
+    }
+    <font color="green">// p == null || p.val == x</font>
+    <font color="blue">if</font> (p != <font color="blue">null</font>) {
+      <font color="blue">if</font> (prev == <font color="blue">null</font>) head = p.next; <font color="blue">else</font> prev.next = p.next;
+    }
+  }
+  
+  <font color="green">// returns the list length</font>
+  <font color="blue">public</font> <font color="blue">int</font> Count {
+    get {
+      <font color="blue">int</font> len = 0;
+      <font color="blue">for</font> (Node p = head; p != <font color="blue">null</font>; p = p.next) len++;
+      <font color="blue">return</font> len;
+    }
+  }
+  
+  <font color="green">// accesses the i-th element of the list</font>
+  <font color="blue">public</font> T <font color="blue">this</font>[<font color="blue">int</font> i] {
+    get {
+      <font color="blue">if</font> (i < 0) <font color="blue">throw</font> <font color="blue">new</font> Exception("-- index <font color="blue">out</font> of bounds");
+      Node p = head;
+      <font color="blue">int</font> j = 0;
+      <font color="blue">while</font> (p != <font color="blue">null</font> && j < i) {
+        p = p.next;
+        j++;
+      }
+      <font color="green">// p == null || (j == i && p points to the i-th element)</font>
+      <font color="blue">if</font> (p == <font color="blue">null</font>) <font color="blue">throw</font> <font color="blue">new</font> Exception("-- index <font color="blue">out</font> of bounds");
+      <font color="blue">return</font> p.val;
+    }
+  }
+}
+
+<font color="green">//----------------------------------------------------------</font>
+<font color="green">// test program</font>
+<font color="green">//----------------------------------------------------------</font>
+<font color="blue">class</font> Test {
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main() {
+    SortedList<<font color="blue">string</font>> list = <font color="blue">new</font> SortedList<<font color="blue">string</font>>();
+    <font color="green">//--- add words</font>
+    <font color="blue">for</font> (;;) {
+      Console.Write("add word (terminate with empty <font color="blue">string</font>): ");
+      <font color="blue">string</font> word = Console.ReadLine();
+      <font color="blue">if</font> (word.Length == 0) <font color="blue">break</font>;
+      list.Add(word);
+    }
+    <font color="green">//--- remove words</font>
+    <font color="blue">for</font> (;;) {
+      <font color="green">//--- print the list</font>
+      <font color="blue">int</font> len = list.Count;
+      <font color="blue">for</font> (<font color="blue">int</font> i = 0; i < len; i++) Console.WriteLine(list[i]);
+      Console.WriteLine();
+      <font color="green">//--- ask for the next word to be removed</font>
+      Console.Write("remove word (terminate with empty <font color="blue">string</font>): ");
+      <font color="blue">string</font> word = Console.ReadLine();
+      <font color="blue">if</font> (word.Length == 0) <font color="blue">break</font>;
+      list.Remove(word);
+    }
+  }
+}</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

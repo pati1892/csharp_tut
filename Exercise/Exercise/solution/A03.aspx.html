@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 6</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Switch-Anweisung</h2>
+
+<b>A03.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+<font color="blue">using</font> System;
+
+<font color="blue">class</font> Test {
+  
+  <font color="blue">static</font> <font color="blue">int</font> DaysOf(<font color="blue">int</font> month) {
+    <font color="blue">int</font> days;
+    <font color="blue">switch</font> (month) {
+      <font color="blue">case</font> 1: <font color="blue">case</font> 3: <font color="blue">case</font> 5: <font color="blue">case</font> 7: <font color="blue">case</font> 8: <font color="blue">case</font> 10: <font color="blue">case</font> 12:
+        days = 31; <font color="blue">break</font>;
+      <font color="blue">case</font> 4: <font color="blue">case</font> 6: <font color="blue">case</font> 9: <font color="blue">case</font> 11:
+        days = 30; <font color="blue">break</font>;
+      <font color="blue">case</font> 2:
+        days = 28; <font color="blue">break</font>;
+      <font color="blue">default</font>:
+        days = 0; <font color="blue">break</font>;
+    }
+    <font color="blue">return</font> days;
+  }
+  
+  <font color="blue">static</font> <font color="blue">int</font> DaysOf1(<font color="blue">string</font> month) {
+    <font color="blue">int</font> days;
+    <font color="blue">switch</font> (month) {
+      <font color="blue">case</font> "Jan": <font color="blue">case</font> "Mar": <font color="blue">case</font> "May": <font color="blue">case</font> "Jul": <font color="blue">case</font> "Aug": <font color="blue">case</font> "Oct": <font color="blue">case</font> "Dec":
+        days = 31; <font color="blue">break</font>;
+      <font color="blue">case</font> "Apr": <font color="blue">case</font> "Jun": <font color="blue">case</font> "Sep": <font color="blue">case</font> "Nov":
+        days = 30; <font color="blue">break</font>;
+      <font color="blue">case</font> "Feb":
+        days = 28; <font color="blue">break</font>;
+      <font color="blue">default</font>:
+        days = 0; <font color="blue">break</font>;
+    }
+    <font color="blue">return</font> days;
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main() {
+    Console.WriteLine(DaysOf(7));
+    Console.WriteLine(DaysOf1("Oct"));
+  }
+}</pre></font>
+</td></tr></table>
+
+<p>
+	<b>CIL-Code von DaysOf:</b>
+</p>
+<pre>
+.method private hidebysig static int32  DaysOf(int32 month) cil managed
+{
+  // Code size       85 (0x55)
+  .maxstack  2
+  .locals init (int32 V_0,
+           int32 V_1,
+           int32 V_2)
+  IL_0000:  ldarg.0
+  IL_0001:  stloc.2
+  IL_0002:  ldloc.2
+  IL_0003:  ldc.i4.1
+  IL_0004:  sub
+  IL_0005:  switch     (
+                        IL_003c,
+                        IL_0046,
+                        IL_003c,
+                        IL_0041,
+                        IL_003c,
+                        IL_0041,
+                        IL_003c,
+                        IL_003c,
+                        IL_0041,
+                        IL_003c,
+                        IL_0041,
+                        IL_003c)
+  IL_003a:  br.s       IL_004b
+  IL_003c:  ldc.i4.s   31
+  IL_003e:  stloc.0
+  IL_003f:  br.s       IL_004f
+  IL_0041:  ldc.i4.s   30
+  IL_0043:  stloc.0
+  IL_0044:  br.s       IL_004f
+  IL_0046:  ldc.i4.s   28
+  IL_0048:  stloc.0
+  IL_0049:  br.s       IL_004f
+  IL_004b:  ldc.i4.0
+  IL_004c:  stloc.0
+  IL_004d:  br.s       IL_004f
+  IL_004f:  ldloc.0
+  IL_0050:  stloc.1
+  IL_0051:  br.s       IL_0053
+  IL_0053:  ldloc.1
+  IL_0054:  ret
+} // end of method Test::DaysOf
+</pre>
+
+<p>
+	<b>CIL-Code von DaysOf1:</b>
+</p>
+<pre>
+.method private hidebysig static int32  DaysOf1(string month) cil managed
+{
+  // Code size       347 (0x15b)
+  .maxstack  4
+  .locals init (int32 V_0,
+           int32 V_1,
+           object V_2)
+  IL_0000:  volatile.
+  IL_0002:  ldsfld     class [mscorlib]System.Collections.Hashtable '<PrivateImplementationDetails>'::'$$method0x6000002-1'
+  IL_0007:  brtrue     IL_00ee
+  IL_000c:  ldc.i4.s   26
+  IL_000e:  ldc.r4     0.5
+  IL_0013:  newobj     instance void [mscorlib]System.Collections.Hashtable::.ctor(int32,
+                                                                                   float32)
+  IL_0018:  dup
+  IL_0019:  ldstr      "Jan"
+  IL_001e:  ldc.i4.0
+  IL_001f:  box        [mscorlib]System.Int32
+  IL_0024:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_0029:  dup
+  IL_002a:  ldstr      "Mar"
+  IL_002f:  ldc.i4.1
+  IL_0030:  box        [mscorlib]System.Int32
+  IL_0035:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_003a:  dup
+  IL_003b:  ldstr      "May"
+  IL_0040:  ldc.i4.2
+  IL_0041:  box        [mscorlib]System.Int32
+  IL_0046:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_004b:  dup
+  IL_004c:  ldstr      "Jul"
+  IL_0051:  ldc.i4.3
+  IL_0052:  box        [mscorlib]System.Int32
+  IL_0057:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_005c:  dup
+  IL_005d:  ldstr      "Aug"
+  IL_0062:  ldc.i4.4
+  IL_0063:  box        [mscorlib]System.Int32
+  IL_0068:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_006d:  dup
+  IL_006e:  ldstr      "Oct"
+  IL_0073:  ldc.i4.5
+  IL_0074:  box        [mscorlib]System.Int32
+  IL_0079:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_007e:  dup
+  IL_007f:  ldstr      "Dec"
+  IL_0084:  ldc.i4.6
+  IL_0085:  box        [mscorlib]System.Int32
+  IL_008a:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_008f:  dup
+  IL_0090:  ldstr      "Apr"
+  IL_0095:  ldc.i4.7
+  IL_0096:  box        [mscorlib]System.Int32
+  IL_009b:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_00a0:  dup
+  IL_00a1:  ldstr      "Jun"
+  IL_00a6:  ldc.i4.8
+  IL_00a7:  box        [mscorlib]System.Int32
+  IL_00ac:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_00b1:  dup
+  IL_00b2:  ldstr      "Sep"
+  IL_00b7:  ldc.i4.s   9
+  IL_00b9:  box        [mscorlib]System.Int32
+  IL_00be:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_00c3:  dup
+  IL_00c4:  ldstr      "Nov"
+  IL_00c9:  ldc.i4.s   10
+  IL_00cb:  box        [mscorlib]System.Int32
+  IL_00d0:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_00d5:  dup
+  IL_00d6:  ldstr      "Feb"
+  IL_00db:  ldc.i4.s   11
+  IL_00dd:  box        [mscorlib]System.Int32
+  IL_00e2:  call       instance void [mscorlib]System.Collections.Hashtable::Add(object,
+                                                                                 object)
+  IL_00e7:  volatile.
+  IL_00e9:  stsfld     class [mscorlib]System.Collections.Hashtable '<PrivateImplementationDetails>'::'$$method0x6000002-1'
+  IL_00ee:  ldarg.0
+  IL_00ef:  dup
+  IL_00f0:  stloc.2
+  IL_00f1:  brfalse.s  IL_0151
+  IL_00f3:  volatile.
+  IL_00f5:  ldsfld     class [mscorlib]System.Collections.Hashtable '<PrivateImplementationDetails>'::'$$method0x6000002-1'
+  IL_00fa:  ldloc.2
+  IL_00fb:  call       instance object [mscorlib]System.Collections.Hashtable::get_Item(object)
+  IL_0100:  dup
+  IL_0101:  stloc.2
+  IL_0102:  brfalse.s  IL_0151
+  IL_0104:  ldloc.2
+  IL_0105:  unbox      [mscorlib]System.Int32
+  IL_010a:  ldind.i4
+  IL_010b:  switch     (
+                        IL_0142,
+                        IL_0142,
+                        IL_0142,
+                        IL_0142,
+                        IL_0142,
+                        IL_0142,
+                        IL_0142,
+                        IL_0147,
+                        IL_0147,
+                        IL_0147,
+                        IL_0147,
+                        IL_014c)
+  IL_0140:  br.s       IL_0151
+  IL_0142:  ldc.i4.s   31
+  IL_0144:  stloc.0
+  IL_0145:  br.s       IL_0155
+  IL_0147:  ldc.i4.s   30
+  IL_0149:  stloc.0
+  IL_014a:  br.s       IL_0155
+  IL_014c:  ldc.i4.s   28
+  IL_014e:  stloc.0
+  IL_014f:  br.s       IL_0155
+  IL_0151:  ldc.i4.0
+  IL_0152:  stloc.0
+  IL_0153:  br.s       IL_0155
+  IL_0155:  ldloc.0
+  IL_0156:  stloc.1
+  IL_0157:  br.s       IL_0159
+  IL_0159:  ldloc.1
+  IL_015a:  ret
+} // end of method Test::DaysOf1
+</pre>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

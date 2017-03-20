@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 21</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Gleichnamige Typen aus verschiedenen Namensr&auml;umen</h2>
+
+<b>GameOfLife.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+/* Spiel des Lebens (Game of Life)
+   ----------------
+   Dies ist das bekannte Beispiel eines zellulaeren Automaten, der aus
+   eine N*N-Matrix von Zellen besteht, die lebend oder tot sein koennen.
+   Die naechste Generation der Matrix berechnet sich wie folgt:
+   - Hat eine lebende Zelle weniger als 2 oder mehr als 3 lebende Nachbarn, 
+     stirbt sie, ansonsten bleibt sie am Leben.
+   - Hat eine tote Zelle genau 3 lebende Nachbarn, wird sie zum Leben erweckt.
+   Die Raender der Matrix werden so betrachtet wie wenn sie mit dem 
+   gegenueberliegenden Rand verbunden waeren.
+   
+   Die einzelnen Zellen der naechsten Generation werden parallel
+   berechnet, wofuer 2 geschachtelte Aufrufe der Methode
+   Parallel.For() verwendet werden.
+   
+   Aufruf: GameOfLife boardSize generations
+------------------------------------------------------------*/
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.Threading.Tasks;
+
+
+<font color="blue">public</font> <font color="blue">class</font> GameOfLife {
+  
+  <font color="blue">static</font> <font color="blue">int</font> N;  <font color="green">// board dimension</font>
+  
+  <font color="green">// Creates an N*N board and initializes it with 1 (life) and 0 (dead)</font>
+  <font color="blue">static</font> <font color="blue">int</font>[,] NewBoard() {
+    <font color="blue">int</font>[,] board = <font color="blue">new</font> <font color="blue">int</font>[N, N];
+    Random rand = <font color="blue">new</font> Random();
+    <font color="blue">for</font> (<font color="blue">int</font> i = 0; i < N; i++) {
+      <font color="blue">for</font> (<font color="blue">int</font> j = 0; j < N; j++) {
+        board[i, j] = rand.NextDouble() > 0.5 ? 1 : 0;
+      }
+    }
+    <font color="blue">return</font> board;
+  }
+  
+  <font color="green">// Prints the board to the console</font>
+  <font color="blue">static</font> <font color="blue">void</font> print(<font color="blue">int</font>[,] board) {
+    <font color="blue">for</font> (<font color="blue">int</font> i = 0; i < N; i++) {
+      <font color="blue">for</font> (<font color="blue">int</font> j = 0; j < N; j++) {
+        <font color="blue">if</font> (board[i, j] == 1) Console.Write("*"); <font color="blue">else</font> Console.Write(".");
+      }
+      Console.WriteLine();
+    }
+    Console.WriteLine();
+  }
+  
+  <font color="green">// Computes how many of the 8 neighbors of board[i, j] are alive.</font>
+  <font color="green">// At the borders the board "wraps around".</font>
+  <font color="blue">static</font> <font color="blue">int</font> Neighbors(<font color="blue">int</font>[,] board, <font color="blue">int</font> i, <font color="blue">int</font> j) {
+    <font color="blue">int</font> top   = i == 0     ? N - 1 : i - 1;
+    <font color="blue">int</font> bot   = i == N - 1 ?     0 : i + 1;
+    <font color="blue">int</font> left  = j == 0     ? N - 1 : j - 1;
+    <font color="blue">int</font> right = j == N - 1 ?     0 : j + 1;
+    <font color="blue">return</font> board[top, left] + board[top, j] + board[top, right]
+         + board[i, left]                   + board[i, right]
+         + board[bot, left] + board[bot, j] + board[bot, right];
+  }
+  
+  <font color="green">// Computes the next generation of the board.</font>
+  <font color="green">// All the cells are computed in parallel.</font>
+  <font color="blue">static</font> <font color="blue">int</font>[,] NextGeneration(<font color="blue">int</font>[,] board) {
+    <font color="blue">int</font>[,] newBoard = <font color="blue">new</font> <font color="blue">int</font>[N, N];
+    Parallel.For(0, N, i => {
+      Parallel.For(0, N, j => {
+        <font color="blue">int</font> neighbors = Neighbors(board, i, j);
+        <font color="blue">if</font> (board[i, j] == 1) { <font color="green">// life</font>
+          newBoard[i, j] = (neighbors < 2 || neighbors > 3) ? 0 : 1;
+        } <font color="blue">else</font> { <font color="green">// dead</font>
+          newBoard[i, j] = neighbors == 3 ? 1 : 0;
+        }
+      });
+    });
+    <font color="blue">return</font> newBoard;
+  }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main(<font color="blue">string</font>[] arg) {
+    <font color="blue">if</font> (arg.Length == 2) {
+      <font color="blue">try</font> {
+        N = Convert.ToInt32(arg[0]);
+        <font color="blue">int</font> generations = Convert.ToInt32(arg[1]);
+        <font color="blue">int</font>[,] board = NewBoard();
+        print(board);
+        <font color="blue">for</font> (<font color="blue">int</font> i = 0; i < generations; i++) {
+          board = NextGeneration(board);
+          print(board);
+        }
+      } <font color="blue">catch</font> (FormatException) {
+        Console.WriteLine("-- Arguments must be integers");
+      }
+    } <font color="blue">else</font> {
+      Console.WriteLine("-- Synopsis: GameOfLife boardSize generations");
+    }
+  }
+}</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>

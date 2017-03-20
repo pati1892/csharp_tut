@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+ "http://www.w3.org/TR/REC-html40/strict.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <title>L&ouml;sungen zu Kapitel 24</title>
+  <link href="/style/core.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+  <a name="_HTOP_"></a>
+  <!-- header  - top, horizontal  -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="313" >
+      <col width="*" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+      <col width="51" >
+    </colgroup>
+    <tbody>
+	  <tr valign="middle" align="left">
+		<td class="topbarLayout" align="right">
+		  <a href="/">
+			<img width="309" height="66" border="0"
+				 alt="Home" src="/style/TitleLogo2.gif">
+		  </a>
+		</td>
+		<td class="topbarLayout">&nbsp;</td>
+		<td class="topbarLayout"><a class="bookImage" href="/book/"><img border="1" alt="Cover" title=".NET Application Development" src="/images/cover_Net_en_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbook/"><img border="1" alt="Cover" title="C# To the Point" src="/images/cover_Cs_en_45.jpg"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/buch/"><img border="1" alt="Cover" title="Die .NET-Technologie" src="/images/cover_Net2_de_45.gif"></a></td>
+		<td class="topbarLayout"><a class="bookImage" href="/csbuch/"><img border="1" alt="Cover" title="Softwareentwicklung mit C#" src="/images/cover_Cs4_de_45.gif"></a></td>
+	  </tr>
+	</tbody>
+  </table>
+
+  <!-- left menu and content -->
+  <table class="layout" width="100%" cellpadding="0" cellspacing="0" border="0">
+    <colgroup>
+      <col width="168" >
+      <col width="8" >
+      <col width="*" >
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="navbarLayout" valign="top" width="168">
+          <div class="menu">
+          	<a class="level1">English books</a><br class="nv">
+          	  <a class="level2" href="/csbook/">C# to the Point</a><br class="nv">
+          	  <a class="level2" href="/book/">.NET Appl. Development</a><br class="nv">
+          	<br>
+          	<a class="level1">German books</a><br class="nv">
+          	  <a class="level2" href="/csbuch/">Kompaktkurs C# 6.0</a><br class="nv">
+          	  <a class="level2" href="/buch/">Die .NET-Technologie</a><br class="nv">
+            <br>
+            <a class="level1" href="/">Home</a><br class="nv">
+            <!-- <a class="level1" href="/news/">News</a><br class="nv"> -->
+            <a class="level1" href="/courses/">Course Material</a><br class="nv">
+            <a class="level1" href="/applications/">Applications</a><br class="nv">
+            <a class="level1" href="/projects/">Projects</a><br class="nv">
+            <!-- <a class="level1" href="/events/">Events</a><br class="nv">
+            <a class="level1" href="/people/">Contact</a><br class="nv"> -->
+            <!-- <a class="level1" href="/links.html">Links</a><br class="nv"> -->
+          </div>
+          <!--
+		  <form class="find" method="post" action="http://www.ssw.uni-linz.ac.at/cgi-bin/htsearch">
+			<input type=hidden name=config value=htdig-dotnet>
+			<input type=hidden name=restrict value="http://dotnet.jku.at">
+			<input type=hidden name=exclude value="">
+			<input class="text" type="text" size="16" name="words" value="">
+			<input class="button" type="submit" value="Search">
+		  </form>
+		  -->
+        </td>
+
+        <td class="contentLayout" width="8" rowspan="2">&nbsp;
+        </td>
+
+        <td class="contentLayout" rowspan="2" align="left" valign="top">
+          <!-- Beisskante Template2.html -->
+          <!-- Beisskante Seiteninhalt -->
+
+
+<h2>Taschenrechner</h2>
+
+<b>A01.cs</b>
+<table border='1' cellpadding='5' bgcolor='#E1E1E1'><tr><td><font size="3">
+<pre>
+/* Calculator
+   This <font color="blue">is</font> a sample program that shows how to implement a GUI
+   under .NET <font color="blue">using</font> Windows Forms. It implements a simple
+   calculator with the 4 basic arithmetic operations 
+   (without precedence)
+------------------------------------------------------------*/
+<font color="blue">using</font> System;
+<font color="blue">using</font> System.Drawing;
+<font color="blue">using</font> System.Windows.Forms;
+
+<font color="blue">enum</font> Op {Plus, Minus, Times, Div, Eql}
+
+<font color="blue">public</font> <font color="blue">class</font> Calculator {
+  <font color="blue">static</font> Form f;             <font color="green">// the calculator window</font>
+  <font color="blue">static</font> TextBox box;        <font color="green">// input field for numbers</font>
+  
+  <font color="blue">static</font> <font color="blue">double</font> lastVal = 0; <font color="green">// last entered number</font>
+  <font color="blue">static</font> Op lastOp = Op.Eql; <font color="green">// last entered operator</font>
+  
+  <font color="green">// shows val in box n</font>
+  <font color="blue">static</font> <font color="blue">void</font> Show(<font color="blue">double</font> val) {
+    box.Text = val.ToString();
+    box.Focus();
+    box.SelectionStart = 0;
+    box.SelectionLength = box.Text.Length;
+  }
+  
+  <font color="green">// The op button was clicked. The previous operation is executed.</font>
+  <font color="blue">static</font> <font color="blue">void</font> Do(Op op) {
+    <font color="blue">double</font> val = Convert.ToDouble(box.Text);
+    <font color="blue">switch</font> (lastOp) {
+      <font color="blue">case</font> Op.Plus:  lastVal += val; <font color="blue">break</font>;
+      <font color="blue">case</font> Op.Minus: lastVal -= val; <font color="blue">break</font>;
+      <font color="blue">case</font> Op.Times: lastVal *= val; <font color="blue">break</font>;
+      <font color="blue">case</font> Op.Div:   lastVal /= val; <font color="blue">break</font>;
+      <font color="blue">case</font> Op.Eql:   lastVal = val;  <font color="blue">break</font>;
+    }
+    Show(lastVal);
+    lastOp = op;
+  }
+  
+  <font color="green">// Event handlers for the operator buttons</font>
+  <font color="blue">static</font> <font color="blue">void</font> Plus (<font color="blue">object</font> sender, EventArgs e) { Do(Op.Plus); }
+  <font color="blue">static</font> <font color="blue">void</font> Minus(<font color="blue">object</font> sender, EventArgs e) { Do(Op.Minus); }
+  <font color="blue">static</font> <font color="blue">void</font> Times(<font color="blue">object</font> sender, EventArgs e) { Do(Op.Times); }
+  <font color="blue">static</font> <font color="blue">void</font> Div  (<font color="blue">object</font> sender, EventArgs e) { Do(Op.Div); }
+  <font color="blue">static</font> <font color="blue">void</font> Eql  (<font color="blue">object</font> sender, EventArgs e) { Do(Op.Eql); }
+  <font color="blue">static</font> <font color="blue">void</font> Clear(<font color="blue">object</font> sender, EventArgs e) { lastOp = Op.Eql; Show(0); }
+  
+  <font color="blue">public</font> <font color="blue">static</font> <font color="blue">void</font> Main() {
+    Font bold = <font color="blue">new</font> Font("Arial", 12, FontStyle.Bold);
+    
+    <font color="green">//--- input field for numbers</font>
+    box = <font color="blue">new</font> TextBox();
+    box.Name = "box";
+    box.Location = <font color="blue">new</font> Point(10, 10);
+    box.Size = <font color="blue">new</font> Size(185, 20);
+    
+    <font color="green">//--- operator buttons</font>
+    Button plus = <font color="blue">new</font> Button();
+    plus.Name = "plus";
+    plus.Location = <font color="blue">new</font> Point(10, 40);
+    plus.Size = <font color="blue">new</font> Size(20, 20);
+    plus.Text = "+";
+    plus.Font = bold;
+    plus.Click += <font color="blue">new</font> EventHandler(Plus);
+    
+    Button minus = <font color="blue">new</font> Button();
+    minus.Name = "minus";
+    minus.Location = <font color="blue">new</font> Point(35, 40);
+    minus.Size = <font color="blue">new</font> Size(20, 20);
+    minus.Text = "-";
+    minus.Font = bold;
+    minus.Click += <font color="blue">new</font> EventHandler(Minus);
+    
+    Button times = <font color="blue">new</font> Button();
+    times.Name = "times";
+    times.Location = <font color="blue">new</font> Point(60, 40);
+    times.Size = <font color="blue">new</font> Size(20, 20);
+    times.Text = "*";
+    times.Font = bold;
+    times.Click += <font color="blue">new</font> EventHandler(Times);
+    
+    Button div = <font color="blue">new</font> Button();
+    div.Name = "div";
+    div.Location = <font color="blue">new</font> Point(85, 40);
+    div.Size = <font color="blue">new</font> Size(20, 20);
+    div.Text = "/";
+    div.Font = bold;
+    div.Click += <font color="blue">new</font> EventHandler(Div);
+    
+    Button eql = <font color="blue">new</font> Button();
+    eql.Name = "eql";
+    eql.Location = <font color="blue">new</font> Point(110, 40);
+    eql.Size = <font color="blue">new</font> Size(20, 20);
+    eql.Text = "=";
+    eql.Font = bold;
+    eql.Click += <font color="blue">new</font> EventHandler(Eql);
+    
+    Button clear = <font color="blue">new</font> Button();
+    clear.Name = "clear";
+    clear.Location = <font color="blue">new</font> Point(135, 40);
+    clear.Size = <font color="blue">new</font> Size(60, 20);
+    clear.Text = "Clear";
+    clear.Font = <font color="blue">new</font> Font("Arial", 10, FontStyle.Bold);
+    clear.Click += <font color="blue">new</font> EventHandler(Clear);
+    
+    <font color="green">//--- create and open the window</font>
+    f = <font color="blue">new</font> Form();
+    f.DesktopLocation = <font color="blue">new</font> Point(0, 0);
+    f.ClientSize = <font color="blue">new</font> Size(205, 70);
+    f.Text = "Desktop Calculator";
+    f.Controls.Add(box);
+    f.Controls.Add(plus);
+    f.Controls.Add(minus);
+    f.Controls.Add(times);
+    f.Controls.Add(div);
+    f.Controls.Add(eql);
+    f.Controls.Add(clear);
+    Application.Run(f);
+  }
+}</pre></font>
+</td></tr></table>
+
+<!-- Beisskante Seiteninhalt -->
+<!-- Beisskante Template3.html -->
+
+    </td>
+  </tr>
+    <tr>
+      <td class="navbarLayout" valign="bottom">
+        <div class="footer">
+			<table cellspacing="0" cellpadding="0" width="128" border="0">
+			<tbody>
+		 	  <tr>
+				<td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="48" height="30" border="0" alt="" src="/style/SSWLogo.png"></a></td>
+				<!-- td valign="middle" align="center"><a href="http://www.ssw.uni-linz.ac.at/"><img width="55" height="54" border="0" alt="" src="/style/SSWLogoNeu.gif"></a></td -->
+				<td valign="middle" align="center"><a href="http://www.jku.at/"><img width="48" height="54" border="0" alt="" src="/style/UniWappen.png"></a></td>
+			  </tr>
+			</tbody>
+		  </table>
+          <p>
+		    Hosted by the <a href="http://ssw.jku.at">Institute for <br>System Software</a> at
+		    the <a href="http://www.jku.at">Johannes Kepler University Linz</a>.
+          </p>
+          <p>
+            Hardware supplied by <br>
+            <a href="http://research.microsoft.com/labs/cam.asp">MSR Cambridge</a>
+          </p>
+          <p>
+            <a href="mailto:admin@ssw.jku.at">Webmaster</a> &nbsp;&nbsp;&nbsp;
+            <a href="#_HTOP_">Top</a>
+          </p>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+  </table>
+<!-- Beisskante Template3.html -->
+
+</body>
+</html>
