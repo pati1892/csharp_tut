@@ -7,21 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercise", "Exercise\Exerci
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{34E2C841-C241-416B-B52E-7675F272943F}"
 	ProjectSection(SolutionItems) = preProject
-		..\..\..\csharp4.pdf = ..\..\..\csharp4.pdf
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicle", "Vehicle\Vehicle.csproj", "{8C96A650-05A6-4072-BC48-8DDE3A9A93F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", "{59560776-7529-48EB-B233-D54C7A2089DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JaggedArray", "JaggedArray\JaggedArray.csproj", "{2364DFBB-8161-4E5B-8BF8-976CEA34D4EC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RectangularArray", "RectangularArray\RectangularArray.csproj", "{9616CE31-B81D-44F3-9171-194DF761B6EC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntToString", "IntToString\IntToString.csproj", "{17FDF84D-532E-44F5-92D6-5BCAA886396D}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions", "Solutions", "{1A8EA46C-8B47-43C3-8FAD-574FAD37EC87}"
-	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Downloads\A01.aspx.html = ..\..\..\..\Downloads\A01.aspx.html
 		..\..\..\..\Downloads\A01.aspx_001.html = ..\..\..\..\Downloads\A01.aspx_001.html
 		..\..\..\..\Downloads\A01.aspx_002.html = ..\..\..\..\Downloads\A01.aspx_002.html
@@ -120,7 +105,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions", "Solutions", "{
 		..\..\..\..\Downloads\A13.aspx.html = ..\..\..\..\Downloads\A13.aspx.html
 		..\..\..\..\Downloads\A14.aspx.html = ..\..\..\..\Downloads\A14.aspx.html
 		..\..\..\..\Downloads\A15.aspx.html = ..\..\..\..\Downloads\A15.aspx.html
+		..\..\..\csharp4.pdf = ..\..\..\csharp4.pdf
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vehicle", "Vehicle\Vehicle.csproj", "{8C96A650-05A6-4072-BC48-8DDE3A9A93F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enum", "Enum\Enum.csproj", "{59560776-7529-48EB-B233-D54C7A2089DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JaggedArray", "JaggedArray\JaggedArray.csproj", "{2364DFBB-8161-4E5B-8BF8-976CEA34D4EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RectangularArray", "RectangularArray\RectangularArray.csproj", "{9616CE31-B81D-44F3-9171-194DF761B6EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntToString", "IntToString\IntToString.csproj", "{17FDF84D-532E-44F5-92D6-5BCAA886396D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -155,8 +151,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1A8EA46C-8B47-43C3-8FAD-574FAD37EC87} = {34E2C841-C241-416B-B52E-7675F272943F}
 	EndGlobalSection
 EndGlobal
