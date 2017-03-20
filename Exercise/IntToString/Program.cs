@@ -30,7 +30,7 @@ namespace IntToString
             return sb.ToString();
         }
 
-        static String IntToStringRightToLeft(int value)
+        static string IntToStringRightToLeft(int value)
         {
             StringBuilder sb = new StringBuilder();
             for(; value != 0 ; )
@@ -41,11 +41,11 @@ namespace IntToString
             }
             char[] array = sb.ToString().ToCharArray();
             Array.Reverse(array);
-            return String.Concat(array);
+            return string.Concat(array);
         }
 
 
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
             int value = 123456;
             Console.WriteLine(IntToStringLeftToRight(value));
