@@ -9,50 +9,50 @@ namespace Queue
     class Queue
     {
         private object[] elements = new object[10];
-        private int backValue = 0;
-        private int frontValue = 0;
+        private int tailValue = 0;
+        private int headValue = 0;
 
-        public int back
+        public int tail
         {
             set
             {
-                backValue = value % 10;
+                tailValue = value % 10;
             }
             get
             {
-                return backValue;
+                return tailValue;
             }
         }
 
-        private int front
+        private int head
         {
             set
             {
-                frontValue = value % 10;
+                headValue = value % 10;
             }
             get
             {
-                return frontValue;
+                return headValue;
             }
         }
 
         private int getNextIndex()
         {
-            if((back == front) && (elements[front] != null)) ++front;
-            return back;
+            if((tail == head) && (elements[head] != null)) ++head;
+            return tail;
         }
 
         public void Enqueue(object element)
         {
             elements[getNextIndex()] = element;
-            ++back;
+            ++tail;
         }
 
         public object Dequeue()
         {
-            object obj = elements[front];
-            elements[front] = null;
-            ++front;
+            object obj = elements[head];
+            elements[head] = null;
+            ++head;
             return obj;
         }
 
@@ -64,11 +64,11 @@ namespace Queue
 
         public void printQueue()
         {
-            while(elements[front] != null)
+            while(elements[head] != null)
             {
-                Console.WriteLine(elements[front]);
-                ++front;
-                if (front == back && elements[front] != null) break;
+                Console.WriteLine(elements[head]);
+                ++head;
+                if (head == tail && elements[head] != null) break;
 
             }
         }
