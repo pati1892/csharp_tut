@@ -85,7 +85,7 @@ namespace Queue_Struct
             queueStack.headValue = 0;
             queueStack.elements = new object[10];
 
-            //Hier anlegen auf dem Heap, Konstruktor und Properties können genutzt werden!
+            //Hier auch anlegen auf dem stack, Konstruktor und Properties können genutzt werden!
             Queue queue = new Queue(10);
             queue.Enqueue(0);
             queue.Enqueue(1);
