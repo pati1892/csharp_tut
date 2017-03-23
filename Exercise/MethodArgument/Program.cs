@@ -13,7 +13,7 @@ namespace MethodArgument
             Console.WriteLine(x);
         }
 
-        static void ParameterList(params int[] val)
+        static void ParameterList(params int[] val) // Variable Anzahl an Parametern
         {
             foreach(var i in val)
             {
@@ -21,7 +21,7 @@ namespace MethodArgument
             }
         }
 
-        static void OptionalParams(int a, int b = 1, int c = 2)
+        static void OptionalParams(int a, int b = 1, int c = 2) // Optionale Parameter/Benannte Parameter
         {
             Console.WriteLine(a + b + c);
         }
@@ -30,7 +30,7 @@ namespace MethodArgument
         {
             OptionalParams(1);
             OptionalParams(1, 2);
-            OptionalParams(1, c: 3);
+            OptionalParams(1, c: 3); // Bennante Parameter
 
             ParameterList(1, 1, 1);
 
