@@ -7,7 +7,7 @@
     <ProjectGuid>{90D080F5-8A42-4AC5-BB01-BBDE06327079}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OperatorOverloading</RootNamespace>
+    <RootNamespace>Indexer</RootNamespace>
     <AssemblyName>OperatorOverloading</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

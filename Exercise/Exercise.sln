@@ -140,7 +140,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Constructor", "Constructor\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Properties", "Properties\Properties.csproj", "{31AB1E1D-6D02-4335-B102-82F04B2CC705}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexer", "OperatorOverloading\Indexer.csproj", "{90D080F5-8A42-4AC5-BB01-BBDE06327079}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indexer", "Indexer\Indexer.csproj", "{90D080F5-8A42-4AC5-BB01-BBDE06327079}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
