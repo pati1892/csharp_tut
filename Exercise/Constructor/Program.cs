@@ -42,6 +42,7 @@ namespace Constructor
 
         static void Main(string[] args)
         {
+            Program prog = new Program();
         }
     }
 
