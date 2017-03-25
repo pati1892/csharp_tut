@@ -11,7 +11,7 @@ namespace Properties
         private int size;
         
         public int Size //get und set müssen nicht immer vorhanden sein, einer von beiden kann scope haben der restriktiver ist als propertie
-        {               //können icht als ref oder out parameter genutzt werden
+        {               //können nicht als ref oder out parameter genutzt werden
             private get
             {
                 return size;
