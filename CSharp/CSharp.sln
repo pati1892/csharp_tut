@@ -162,7 +162,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interface", "Interface\Inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDisposable", "IDisposable\IDisposable.csproj", "{212FEEA1-79CA-49F8-B2BA-6DFE3B35C0FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate", "Delegate\Delegate.csproj", "{94923885-5238-4E1A-81A1-CD43CE9AD4EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delegate_Event", "Delegate\Delegate_Event.csproj", "{94923885-5238-4E1A-81A1-CD43CE9AD4EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

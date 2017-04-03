@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Delegate
 {
-    class Program
+    class Delegate
     {
         //ist ein Methodentyp, dient zur deklaration von variablen, in denen Methoden gespeichert werden können
 
@@ -38,8 +38,8 @@ namespace Delegate
             Notifier notify = new Notifier(SayHello);
             notify += new Notifier(SayGoodBye);
             notify("Patrick");
-            Program prog_1 = new Program();
-            Program prog_2 = new Program();
+            Delegate prog_1 = new Delegate();
+            Delegate prog_2 = new Delegate();
             Adder add = new Adder(prog_1.Add);
             add += new Adder(prog_2.Add);
             Console.WriteLine("Delegate calls the Method of the two Objects");
@@ -48,7 +48,7 @@ namespace Delegate
             add -= prog_1.Add;
             add(2);
             Console.WriteLine("Add static Method");
-            add += new Adder(Program.AddStatic);
+            add += new Adder(Delegate.AddStatic);
             add(2);
             Console.WriteLine("Alternativ assignment");
             Adder addIt = prog_1.Add;
